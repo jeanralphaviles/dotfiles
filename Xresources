@@ -4,10 +4,16 @@ URxvt.dpi: 108.79
 URxvt.autohint: 0
 URxvt.antialias: 1
 
+! Perl
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,pasta
+
 ! Clickable Links with mouse-wheel button
-URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 2
+
+! Copy-paste
+URxvt.clipboard.autocopy: true
+URxvt.keysym.Control-Shift-V: perl:pasta:paste
 
 ! Disable scrollbar
 URxvt.scrollBar: false
