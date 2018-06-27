@@ -6,12 +6,15 @@
 [[ $- != *i* ]] && return
 
 # Terminal
+stty -ixon
 export TERM='rxvt-unicode-256color'
 export EDITOR='vim'
+
+# History
+export HISTTIMEFORMAT='%Y-%m-%dT%H:%M:%S %z: '
 export PROMPT_COMMAND='history -a'
 export HISTSIZE=
 export HISTFILESIZE=
-stty -ixon
 
 # GOPATH
 export GOPATH="$HOME/Projects"
@@ -47,9 +50,9 @@ alias pbpaste='xsel --clipboard --output'
 alias screenshot='import png:- | xclip -selection c -t image/png'
 
 function tmux {
-  if [[ "$1" == "ls" ]]; then
+  if [[ "$1" == 'ls' ]]; then
     command tmux list-sessions
-  elif [[ "$1" == "a" ]]; then
+  elif [[ "$1" == 'a' ]]; then
     if [[ "$#" == 1 ]]; then
       command tmux attach-session
     else
