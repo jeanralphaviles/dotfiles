@@ -78,6 +78,10 @@ function _tmux() {
 
 complete -F _tmux tmux
 
+function weather() {
+  curl -H "Accept-Language: ${LANG%_*}" "wttr.in/$1"
+}
+
 function notify {
   local title=''
   command "$@"
