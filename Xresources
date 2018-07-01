@@ -31,6 +31,10 @@ URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 Urxvt.secondaryWheel: 1
 
+! Disable ISO 14755 input mode shortcut
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
 ! Colors | From base16-monokai-256.Xresources
 #define base00 #272822
 #define base01 #383830
