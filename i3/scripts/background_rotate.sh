@@ -12,6 +12,6 @@ fi
 
 while true
 do
-  $HOME/.i3/scripts/background_change.sh
+  "$HOME/.i3/scripts/background_change.sh"
   sleep "$INTERVAL"
 done

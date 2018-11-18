@@ -20,7 +20,7 @@ export HISTFILESIZE=
 export GOPATH="$HOME/Projects"
 
 # PATH
-export PATH="$PATH:/bin"
+export PATH="$PATH:/bin:/sbin"
 export PATH="$PATH:$GOPATH/bin"
 
 # Colorizing
