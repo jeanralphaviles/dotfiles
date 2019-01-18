@@ -172,7 +172,7 @@ exec --no-startup-id sh ~/.i3/scripts/power_management.sh 10 &
 bindsym $mod+Control+l exec --no-startup-id sh ~/.i3/scripts/lock.sh, mode "default"
 bindsym XF86Sleep exec --no-startup-id sh ~/.i3/scripts/sleep.sh, mode "default"
 # Applications
-bindsym $mod+F1 exec google-chrome
+bindsym $mod+F1 exec chromium
 
 ### i3-gaps stuff ###
 
