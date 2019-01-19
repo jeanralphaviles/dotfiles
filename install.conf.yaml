@@ -16,4 +16,5 @@
     ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
     ~/.Xresources: Xresources
+    ~/.xscreensaver: xscreensaver
 
