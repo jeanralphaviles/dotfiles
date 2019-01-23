@@ -120,7 +120,7 @@ mode "resize" {
 
 ## Multimedia Keys
 # audio control media keys
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master toggle
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%- unmute
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+ unmute
 # player control
