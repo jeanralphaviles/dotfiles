@@ -11,10 +11,15 @@ export TERM='rxvt-unicode-256color'
 export EDITOR='vim'
 
 # History
+# https://sanctum.geek.nz/arabesque/better-bash-history/
 export HISTTIMEFORMAT='%Y-%m-%dT%H:%M:%S %z: '
 export PROMPT_COMMAND='history -a'
 export HISTSIZE=
 export HISTFILESIZE=
+export HISTIGNORE='history'
+export HISTCONTROL='ignoreboth'
+shopt -s cmdhist
+shopt -s histappend
 
 # GOPATH
 export GOPATH="$HOME/Projects"
