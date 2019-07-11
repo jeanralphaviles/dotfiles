@@ -168,8 +168,10 @@ bindsym $mod+F12 exec --no-startup-id sh ~/.i3/scripts/background_change.sh &
 exec --no-startup-id sh ~/.i3/scripts/power_management.sh 10 &
 
 ## Keyboard Shortcuts
-# Sleep / Lock
+# Sleep / Lock / Power Off
 bindsym $mod+Control+l exec --no-startup-id sh ~/.i3/scripts/lock.sh, mode "default"
 bindsym XF86Sleep exec --no-startup-id sh ~/.i3/scripts/sleep.sh, mode "default"
+bindsym $mod+Pause exec --no-startup-id sh ~/.i3/scripts/shutdown.sh, mode "default"
+
 # Applications
 bindsym $mod+F1 exec chromium
