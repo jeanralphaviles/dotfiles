@@ -1,7 +1,7 @@
 # Terminal
 stty -ixon
 export EDITOR='vim'
-export PROMPT=$'\e[0;92m%n@%m\e[0m \e[0;94m%~ $ \e[0m'
+export PROMPT=$'%{\e[0;92m%}%n@%m%{\e[0m%} %{\e[0;94m%}%~ $ %{\e[0m%}'
 
 # zsh settings
 # Tab completion
