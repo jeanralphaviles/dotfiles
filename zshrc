@@ -18,7 +18,10 @@ zstyle ':completion:*' menu select
 export CLICOLOR=1
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
+# BSD ls
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+# GNU ls
+ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 
 # History
 # https://sanctum.geek.nz/arabesque/better-bash-history/
