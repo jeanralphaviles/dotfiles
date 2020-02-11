@@ -14,6 +14,14 @@ setopt pushdignoredups
 # Menu selection
 zstyle ':completion:*' menu select
 
+# Emacs keybindings
+bindkey -e
+
+# Command line editing
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 # Colorizing
 export CLICOLOR=1
 alias grep='grep --color=auto'
