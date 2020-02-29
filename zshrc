@@ -11,6 +11,9 @@ compinit
 # Pushd stack
 setopt pushdignoredups
 
+# Parse comments in prompt
+setopt interactivecomments
+
 # Menu selection
 zstyle ':completion:*' menu select
 
