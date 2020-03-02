@@ -25,6 +25,10 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+# Word boundaries
+autoload -U select-word-style
+select-word-style bash
+
 # Colorizing
 export CLICOLOR=1
 alias grep='grep --color=auto'
@@ -36,6 +40,7 @@ ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 
 # History
 # https://sanctum.geek.nz/arabesque/better-bash-history/
+HISTFILE="$HOME/.zsh_history"
 alias history='history -t "%Y-%m-%dT%H:%M:%S %z:"'
 # Commands are recorded in history as they're typed.
 setopt SHARE_HISTORY
@@ -43,8 +48,13 @@ setopt INC_APPEND_HISTORY
 # De-dupe history
 setopt HIST_FIND_NO_DUPS
 # More recorded history
-export HISTSIZE=100000
-export HISTFILESIZE=100000
+HISTSIZE=100000
+HISTFILESIZE=100000
+SAVEHIST=100000
+# Add timestamp for every entry
+setopt EXTENDED_HISTORY
+# c-r history search
+bindkey '^R' history-incremental-search-backward
 
 # GO
 export GOPATH="$HOME/Projects"
