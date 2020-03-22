@@ -62,6 +62,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 # Aliases
 alias cow='fortune | cowsay'
+alias screenshot='import png:- | xclip -selection c -t image/png'
 
 function weather() {
   curl -H "Accept-Language: ${LANG%_*}" "wttr.in/$1"
