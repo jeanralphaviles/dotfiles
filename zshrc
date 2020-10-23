@@ -42,19 +42,25 @@ ls --color=auto &> /dev/null && alias ls='ls --color=auto'
 # https://sanctum.geek.nz/arabesque/better-bash-history/
 HISTFILE="$HOME/.zsh_history"
 alias history='history -t "%Y-%m-%dT%H:%M:%S %z:"'
-# Commands are recorded in history as they're typed.
-setopt SHARE_HISTORY
-setopt INC_APPEND_HISTORY
-# De-dupe history
-setopt HIST_FIND_NO_DUPS
-# More recorded history
-HISTSIZE=100000
-HISTFILESIZE=100000
-SAVEHIST=100000
-# Add timestamp for every entry
-setopt EXTENDED_HISTORY
 # c-r history search
 bindkey '^R' history-incremental-search-backward
+# More recorded history
+HISTSIZE=100000000
+SAVEHIST=100000000
+# Commands are recorded in history as they're typed.
+setopt SHARE_HISTORY
+# Write to the history file immediately, not when the shell exits.
+setopt INC_APPEND_HISTORY
+# Add timestamp for every entry
+setopt EXTENDED_HISTORY
+# Remove superfluous blanks before recording entry.
+setopt HIST_REDUCE_BLANKS
+# De-dupe history
+setopt HIST_FIND_NO_DUPS
+# Don't record an entry starting with a space.
+setopt HIST_IGNORE_SPACE
+# Beep when accessing nonexistent history.
+setopt HIST_BEEP
 
 # GO
 export GOPATH="$HOME/Projects"
