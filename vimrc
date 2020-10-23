@@ -75,6 +75,7 @@ highlight CursorLine term=bold cterm=bold guibg=Grey40
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 call matchadd('OverLength', '\%81v', 100)
 set colorcolumn=80
+set textwidth=80
 
 " Searching
 set hlsearch         " highlight when searching
