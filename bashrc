@@ -22,7 +22,7 @@ shopt -s cmdhist
 shopt -s histappend
 
 # GOPATH
-export GOPATH="$HOME/Projects"
+export GOPATH="$HOME/projects"
 
 # PATH
 export PATH="$PATH:/bin:/sbin"

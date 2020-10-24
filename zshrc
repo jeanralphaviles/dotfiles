@@ -67,7 +67,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_BEEP
 
 # GO
-export GOPATH="$HOME/Projects"
+export GOPATH="$HOME/projects"
 export PATH="$PATH:$GOPATH/bin"
 
 # Aliases
