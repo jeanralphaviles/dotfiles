@@ -1,7 +1,7 @@
 # Terminal
 stty -ixon
 export EDITOR='vim'
-export PROMPT=$'%{\e[1;92m%}%n@%m%{\e[0m%} %{%(?.\e[0;94m.\e[38;5;196m)%}%~ $ %{\e[0m%}'
+export PROMPT=$'%{\e[38;5;82m%}%n@%m%{\e[0m%} %{%(?.\e[38;5;69m.\e[38;5;196m)%}%~ $ %{\e[0m%}'
 # If you use 24-bit colors, you might want to load the zsh/nearcolor module in
 # terminals that do not support them.
 # https://wiki.archlinux.org/index.php/zsh#Colors.
