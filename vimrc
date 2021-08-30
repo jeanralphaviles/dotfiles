@@ -7,8 +7,7 @@ set nocompatible
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'Lokaltog/powerline'
+Plugin 'preservim/nerdtree'
 Plugin 'tomasr/molokai'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -98,7 +97,7 @@ function! HLNext (blinktime)
             \ . '\%>'.lnum.'l.'
     let ring = matchadd('BlackOnBlack', hide_pat, 101)
     redraw
-    exec 'sleep ' . float2nr(a:blinktime * 750) . 'm'
+    exec 'sleep ' . float2nr(a:blinktime * 350) . 'm'
     call matchdelete(ring)
     redraw
 endfunction
