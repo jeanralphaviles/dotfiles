@@ -75,6 +75,8 @@ highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 call matchadd('OverLength', '\%81v', 100)
 set colorcolumn=80
 set textwidth=80
+" https://superuser.com/q/1502878
+set nojoinspaces
 
 " Searching
 set hlsearch         " highlight when searching
