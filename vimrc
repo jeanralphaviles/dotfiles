@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'tomasr/molokai'
+Plugin 'ledger/vim-ledger'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Brief help
