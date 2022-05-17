@@ -1,6 +1,6 @@
 ! Font
-URxvt*font: xft:Liberation Mono:size=9
-Xft.dpi: 108.79
+URxvt*font: xft:Liberation Mono:size=10
+Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true
 Xft.rgba: rgb
