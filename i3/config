@@ -5,13 +5,14 @@
 set $mod Mod1
 
 # Font
-font pango:DejaVu Sans Mono 7
+font pango:DejaVu Sans Mono 9
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec TERMINAL=urxvt i3-sensible-terminal
+bindsym $mod+Return exec TERMINAL=gnome-terminal i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -174,4 +175,4 @@ bindsym XF86Sleep exec --no-startup-id sh ~/.i3/scripts/sleep.sh, mode "default"
 bindsym $mod+Pause exec --no-startup-id sh ~/.i3/scripts/shutdown.sh, mode "default"
 
 # Applications
-bindsym $mod+F1 exec chromium
+bindsym $mod+F1 exec google-chrome-stable
