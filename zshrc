@@ -69,9 +69,17 @@ setopt HIST_IGNORE_SPACE
 # Beep when accessing nonexistent history.
 setopt HIST_BEEP
 
-# GO
+# Go
 export GOPATH="$HOME/projects"
-export PATH="$PATH:$GOPATH/bin"
+
+if [ -d "$GOPATH/bin" ] ; then
+  export PATH="$GOPATH/bin:$PATH"
+fi
+
+# Python
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Aliases
 alias cow='fortune | cowsay'
