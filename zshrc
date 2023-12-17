@@ -70,7 +70,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_BEEP
 
 # Go
-export GOPATH="$HOME/projects"
+export GOPATH="$HOME/Projects"
 
 if [ -d "$GOPATH/bin" ] ; then
   export PATH="$GOPATH/bin:$PATH"
