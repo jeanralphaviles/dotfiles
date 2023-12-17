@@ -12,7 +12,7 @@ font pango:DejaVu Sans Mono 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec TERMINAL=gnome-terminal i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -66,9 +66,6 @@ bindsym $mod+Shift+f focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -100,7 +97,7 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
+# resize window (you can also use the mouse for this)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         bindsym h resize shrink width 10 px or 10 ppt
@@ -143,18 +140,8 @@ new_window pixel 3
 new_float pixel 1
 client.focused #0088CC #0088CC #ffffff #dddddd
 client.focused_inactive #333333 #5F676A #EEEEEE
-
-## colourclass               border    bckgrnd    text
-# client.focused             #1793D0   #1793D0    #FFFFFF
-# client.focused_inactive    #000000   #333333    #FFFFFF
-# client.unfocused           #000000   #333333    #FFFFFF
-# client.urgent              #FF0000   #FF0000    #FF0000
-#
-#
-# client.focused #0088CC #0088CC #ffffff #dddddd
-# client.focused_inactive #333333 #333333 #888888 #292d2e
-# client.unfocused #333333 #333333 #888888 #292d2e
-# client.urgent #2f343a #900000 #ffffff #900000
+smart_borders on
+hide_edge_borders both
 
 ## Windows
 for_window [window_role="pop-up"] floating enable
@@ -165,14 +152,26 @@ exec --no-startup-id sh ~/.i3/scripts/background_rotate.sh 600 &
 bindsym $mod+F12 exec --no-startup-id sh ~/.i3/scripts/background_change.sh &
 
 ## Power Management
-# Turn off Display after 10 minutes
-exec --no-startup-id sh ~/.i3/scripts/power_management.sh 10 &
+# Turn off Display after 5 minutes
+exec_always --no-startup-id xset dpms 0 0 300
+
+# Lock screen after 5 minutes. Suspend after 15 minutes.
+# sleep 2; true required until
+# https://salsa.debian.org/friki/xautolock/-/merge_requests/5/diffs is merged.
+exec_always --no-startup-id \
+    xautolock -locker 'i3lock --nofork' -time 5 -notify 15 -detectsleep \
+    -killer 'sudo systemctl suspend; sleep 2; true' -killtime 10
 
 ## Keyboard Shortcuts
 # Sleep / Lock / Power Off
-bindsym $mod+Control+l exec --no-startup-id sh ~/.i3/scripts/lock.sh, mode "default"
-bindsym XF86Sleep exec --no-startup-id sh ~/.i3/scripts/sleep.sh, mode "default"
-bindsym $mod+Pause exec --no-startup-id sh ~/.i3/scripts/shutdown.sh, mode "default"
+bindsym $mod+Control+l exec --no-startup-id \
+    xautolock -locknow && xset dpms force off
+bindsym XF86Sleep exec --no-startup-id \
+    xautolock -locknow && sudo systemctl suspend
+bindsym $mod+Pause exec --no-startup-id sudo systemctl poweroff
 
 # Applications
 bindsym $mod+F1 exec google-chrome-stable
+
+bindsym $mod+F2 exec speedcrunch
+for_window [class="SpeedCrunch"] floating enable
