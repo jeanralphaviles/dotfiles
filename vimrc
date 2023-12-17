@@ -7,7 +7,6 @@ set nocompatible
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'preservim/nerdtree'
 Plugin 'tomasr/molokai'
 Plugin 'ledger/vim-ledger'
 call vundle#end()            " required
@@ -19,16 +18,11 @@ filetype plugin indent on    " required
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 " see :h vundle for more details or wiki for FAQ
 
-let g:EclimCompletionMethod = 'omnifunc'
-
 " Set Colorscheme
 set t_Co=256
 colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
-
-" Enable Tagbar with F8
-nmap <F8> :TagbarToggle<CR>
 
 " set UTF-8 encoding
 set enc=utf-8
@@ -114,20 +108,17 @@ set showmatch        " highlight matching braces
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
-" Google File Extensions
-au BufNewFile,BufRead *.pi setf python
-
 " window settings
 set splitright       " Puts new vsplit windows to the right of the current
 set splitbelow       " Puts new split windows to the bottom of the current
 set lazyredraw       " Don't redraw while executing macros
 
 " Key Commands
-" <F5> to remove trailing whitespace
+" <F5> to remove trailing whitespace.
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-" Pressing <leader>ss will toggle and untoggle spell checking
+" Pressing <leader>ss will toggle and untoggle spell checking.
 map <leader>ss :setlocal spell!<cr>
-
+" Pressing <leader>l will toggle line numbers.
 map <leader>l :setlocal number!<cr>
 
 " session saving
@@ -137,4 +128,3 @@ autocmd BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal! g`\"" |
 \ endif
-
