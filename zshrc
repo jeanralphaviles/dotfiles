@@ -83,6 +83,9 @@ fi
 
 # Aliases
 alias cow='fortune | cowsay'
+if command -v xclip > /dev/null; then
+  alias pbcopy='xclip -selection clipboard'
+fi
 alias screenshot='import png:- | xclip -selection c -t image/png'
 
 function weather() {
