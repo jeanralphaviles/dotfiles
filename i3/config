@@ -152,22 +152,26 @@ exec --no-startup-id sh ~/.i3/scripts/background_rotate.sh 600 &
 bindsym $mod+F12 exec --no-startup-id sh ~/.i3/scripts/background_change.sh &
 
 ## Power Management
-# Turn off Display after 5 minutes
-exec_always --no-startup-id xset dpms 0 0 300
 
-# Lock screen after 5 minutes. Suspend after 15 minutes.
-# sleep 2; true required until
-# https://salsa.debian.org/friki/xautolock/-/merge_requests/5/diffs is merged.
-exec_always --no-startup-id \
-    xautolock -locker 'i3lock --nofork' -time 5 -notify 15 -detectsleep \
-    -killer 'sudo systemctl suspend; sleep 2; true' -killtime 10
+## Lock screen after 5 minutes. Suspend after 10 minutes.
+exec --no-startup-id \
+    xidlehook \
+    --socket /tmp/xidlehook.sock \
+    --not-when-fullscreen \
+    --detect-sleep \
+    --timer 290 'xset dpms force off' '' \
+    --timer 10 'i3lock --nofork' '' \
+    --timer 300 'sudo systemctl suspend' ''
 
 ## Keyboard Shortcuts
 # Sleep / Lock / Power Off
 bindsym $mod+Control+l exec --no-startup-id \
-    xautolock -locknow && xset dpms force off
+    sleep 1 && \
+    xidlehook-client --socket /tmp/xidlehook.sock control --action trigger --timer 0 1
+# Something else is intercepting XF86Sleep
 bindsym XF86Sleep exec --no-startup-id \
-    xautolock -locknow && sudo systemctl suspend
+    sleep 1 && \
+    xidlehook-client --socket /tmp/xidlehook.sock control --action trigger --timer 1
 bindsym $mod+Pause exec --no-startup-id sudo systemctl poweroff
 
 # Applications
