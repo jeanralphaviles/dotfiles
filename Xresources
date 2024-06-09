@@ -1,4 +1,6 @@
 ! Font
+! https://bugs.archlinux.org/task/77062
+URxvt.geometry: 400x400
 URxvt*font: xft:Liberation Mono:size=10
 Xft.dpi: 96
 Xft.antialias: true
