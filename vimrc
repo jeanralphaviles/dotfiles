@@ -72,6 +72,8 @@ set colorcolumn=80
 set textwidth=80
 " https://superuser.com/q/1502878
 set nojoinspaces
+" https://vi.stackexchange.com/questions/3434
+set nofixeol
 
 " Searching
 set hlsearch         " highlight when searching
