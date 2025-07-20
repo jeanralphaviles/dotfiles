@@ -7,8 +7,8 @@ set nocompatible
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tomasr/molokai'
 Plugin 'ledger/vim-ledger'
+Plugin 'tomasr/molokai'
 call vundle#end()            " required
 filetype plugin indent on    " required
 " Brief help
@@ -42,7 +42,8 @@ set noswapfile        " disable swap files
 set viewoptions=folds,options,cursor,unix,slash " Better compatibility
 " use semicolon as another colon
 noremap ; :
-" ignore typos
+
+" ignore typos for common save/quit commands
 command WQ wq
 command Wq wq
 command W w
@@ -57,8 +58,7 @@ set autoindent       " use indentation of previous line
 set smartindent      " use intelligent indentation for C
 set nowrap           " don't wrap lines
 set pastetoggle=<F2> " <F2> to toggle auto-indentation when pasting in text
-set backspace=2      " make backspace work like most other apps
-set backspace=indent,eol,start
+set backspace=indent,eol,start " behave more like a standard editor
 
 " lines
 set number           " turn line numbers on
@@ -80,8 +80,10 @@ set hlsearch         " highlight when searching
 set incsearch        " match while searching
 set ignorecase       " case insensitive search
 set smartcase        " smart case search
+
 " space to clear search highlights
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
 " Better search match visualization
 function! HLNext (blinktime)
     highlight BlackOnBlack ctermfg=black ctermbg=black
@@ -100,6 +102,7 @@ function! HLNext (blinktime)
     call matchdelete(ring)
     redraw
 endfunction
+
 " This rewires n and N to do the highlighing...
 nnoremap <silent> n   n:call HLNext(0.4)<cr>
 nnoremap <silent> N   N:call HLNext(0.4)<cr>
