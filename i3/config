@@ -7,7 +7,6 @@ set $mod Mod1
 # Font
 font pango:DejaVu Sans Mono 9
 
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -160,19 +159,18 @@ exec --no-startup-id \
     --not-when-fullscreen \
     --detect-sleep \
     --timer 290 'xset dpms force off' '' \
-    --timer 10 'i3lock --nofork' '' \
+    --timer 10 'loginctl lock-session' '' \
     --timer 300 'sudo systemctl suspend' ''
 
+## Lock screen when instructed to by systemd-logind
+exec --no-startup-id xss-lock -- i3lock --nofork -c 000000
+
 ## Keyboard Shortcuts
-# Sleep / Lock / Power Off
-bindsym $mod+Control+l exec --no-startup-id \
-    sleep 1 && \
-    xidlehook-client --socket /tmp/xidlehook.sock control --action trigger --timer 0 1
-# Something else is intercepting XF86Sleep
-bindsym XF86Sleep exec --no-startup-id \
-    sleep 1 && \
-    xidlehook-client --socket /tmp/xidlehook.sock control --action trigger --timer 1
-bindsym $mod+Pause exec --no-startup-id sudo systemctl poweroff
+
+### Sleep / Lock / Power Off
+bindsym $mod+Control+l exec --no-startup-id loginctl lock-session
+bindsym XF86Sleep exec --no-startup-id systemctl suspend
+bindsym $mod+Pause exec --no-startup-id systemctl poweroff
 
 # Applications
 bindsym $mod+F1 exec google-chrome-stable
