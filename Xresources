@@ -11,14 +11,15 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! Perl
-URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+URxvt.perl-ext-common: default,matcher,clipboard
 
 ! Clickable Links with mouse-wheel button
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 2
 
 ! Copy-paste
-URxvt.clipboard.autocopy: true
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 
 ! Set scroll buffer length
 Urxvt.saveLines: 5000
