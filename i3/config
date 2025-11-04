@@ -163,6 +163,7 @@ for_window [window_role="task_dialog"] floating enable
 ## Background
 exec --no-startup-id sh ~/.i3/scripts/background_rotate.sh 600 &
 bindsym $mod+F12 exec --no-startup-id sh ~/.i3/scripts/background_change.sh &
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id sh ~/.i3/scripts/background_change.sh &
 
 ## Power Management
 
@@ -174,10 +175,10 @@ exec --no-startup-id \
     --detect-sleep \
     --timer 290 'xset dpms force off' '' \
     --timer 10 'loginctl lock-session' '' \
-    --timer 300 'sudo systemctl suspend' ''
+    --timer 300 'systemctl suspend' ''
 
 ### Lock screen when instructed to by systemd-logind
-exec --no-startup-id xss-lock -- i3lock --nofork -c 000000
+exec --no-startup-id xss-lock -- i3lock --nofork
 
 ## Keyboard Shortcuts
 
@@ -186,8 +187,13 @@ bindsym $mod+Control+l exec --no-startup-id loginctl lock-session
 bindsym XF86Sleep exec --no-startup-id systemctl suspend
 bindsym $mod+Pause exec --no-startup-id systemctl poweroff
 
+### Gestures
+exec --no-startup-id touchegg
+
 ### Applications
 bindsym $mod+F1 exec google-chrome-stable
+bindsym $mod+XF86MonBrightnessDown exec google-chrome-stable
 
 bindsym $mod+F2 exec speedcrunch
+bindsym $mod+XF86MonBrightnessUp exec speedcrunch
 for_window [class="SpeedCrunch"] floating enable
