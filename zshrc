@@ -36,6 +36,16 @@ bindkey \^U backward-kill-line
 autoload -U select-word-style
 select-word-style bash
 
+## ANSI
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+
+## rxvt
+bindkey '^[Od' backward-word
+bindkey '^[Oc' forward-word
+
+bindkey '^H' backward-kill-word
+
 # Colorizing
 export CLICOLOR=1
 alias grep='grep --color=auto'
