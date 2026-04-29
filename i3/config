@@ -1,7 +1,7 @@
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+# Sway config file
+# Please see sway(5) for a complete reference!
 
-# Left Alt
+# Set mod to left alt
 set $mod Mod1
 
 # Font
@@ -11,13 +11,13 @@ font pango:DejaVu Sans Mono 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec foot
 
 # kill focused window
 bindsym $mod+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
+# start wmenu (a program launcher)
+bindsym $mod+space exec wmenu-run
 
 # change focus
 bindsym $mod+h focus left
@@ -91,10 +91,12 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+
+# restart Sway inplace (preserves your layout/session, can be used to upgrade Sway)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# exit Sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway?' -b 'Yes, exit Sway' 'swaymsg exit'"
 
 # resize window (you can also use the mouse for this)
 bindsym $mod+r mode "resize"
@@ -117,40 +119,38 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-## Multimedia Keys
+# Multimedia Keys
 
-### audio control media keys
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%- unmute
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+ unmute
+## audio control media keys
+bindsym XF86AudioMute exec pamixer --toggle-mute
+bindsym XF86AudioLowerVolume exec pamixer --decrease 2
+bindsym XF86AudioRaiseVolume exec pamixer --increase 2
 
-### player control
+## player control
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-### brightness control
+## brightness control
 
-#### Display
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+### Display
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-#### Keyboard
-bindsym XF86KbdBrightnessUp exec --no-startup-id \
+### Keyboard
+bindsym XF86KbdBrightnessUp exec \
     brightnessctl --device '*:kbd_backlight' set +5%
-bindsym XF86KbdBrightnessDown exec --no-startup-id \
+bindsym XF86KbdBrightnessDown exec \
     brightnessctl --device '*:kbd_backlight' set 5%-
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Display a workspace bar
 bar {
         status_command i3status
-        tray_output primary
 }
 
 ## Colors
-new_window pixel 3
-new_float pixel 1
+default_border pixel 3
+default_floating_border pixel 1
 client.focused #0088CC #0088CC #ffffff #dddddd
 client.focused_inactive #333333 #5F676A #EEEEEE
 smart_borders on
@@ -161,39 +161,31 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 ## Background
-exec --no-startup-id sh ~/.i3/scripts/background_rotate.sh 600 &
-bindsym $mod+F12 exec --no-startup-id sh ~/.i3/scripts/background_change.sh &
-bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id sh ~/.i3/scripts/background_change.sh &
+exec sh ~/.i3/scripts/background_rotate.sh 600 &
+bindsym $mod+F12 exec ~/.i3/scripts/background_change.sh &
 
 ## Power Management
 
-### Lock screen after 5 minutes. Suspend after 10 minutes.
-exec --no-startup-id \
-    xidlehook \
-    --socket /tmp/xidlehook.sock \
-    --not-when-fullscreen \
-    --detect-sleep \
-    --timer 290 'xset dpms force off' '' \
-    --timer 10 'loginctl lock-session' '' \
-    --timer 300 'systemctl suspend' ''
+### Lock screen after 5 minutes. Suspend after 10 minutes. Handle loginctl.
+exec swayidle -w \
+    lock 'swaylock -f' \
+    before-sleep 'loginctl lock-session' \
+    timeout 290 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    timeout 300 'loginctl lock-session' \
+    timeout 600 'systemctl suspend'
 
-### Lock screen when instructed to by systemd-logind
-exec --no-startup-id xss-lock -- i3lock --nofork
+### Prevent power management when there is a fullscreen window.
+for_window [class=".*"] inhibit_idle fullscreen
 
 ## Keyboard Shortcuts
 
 ### Sleep / Lock / Power Off
-bindsym $mod+Control+l exec --no-startup-id loginctl lock-session
-bindsym XF86Sleep exec --no-startup-id systemctl suspend
-bindsym $mod+Pause exec --no-startup-id systemctl poweroff
-
-### Gestures
-exec --no-startup-id touchegg
+bindsym $mod+Control+l exec loginctl lock-session
+bindsym XF86Sleep exec systemctl suspend
+bindsym $mod+Pause exec systemctl poweroff
 
 ### Applications
 bindsym $mod+F1 exec google-chrome-stable
-bindsym $mod+XF86MonBrightnessDown exec google-chrome-stable
 
 bindsym $mod+F2 exec speedcrunch
-bindsym $mod+XF86MonBrightnessUp exec speedcrunch
-for_window [class="SpeedCrunch"] floating enable
+for_window [app_id="org.speedcrunch."] floating enable

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Every $1 seconds call the background change script
 
