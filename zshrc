@@ -93,10 +93,18 @@ fi
 
 # Aliases
 alias cow='fortune | cowsay'
+
+# X11
 if command -v xclip > /dev/null; then
   alias pbcopy='xclip -selection clipboard'
+  alias pbpaste='xclip -out -selection clipboard'
+  alias screenshot='import png:- | pbcopy'
+# Wayland
+elif command -v wl-copy > /dev/null; then
+  alias pbcopy='wl-copy'
+  alias pbpaste='wl-paste'
+  alias screenshot='slurp | grim -g - - | wl-copy'
 fi
-alias screenshot='import png:- | xclip -selection c -t image/png'
 
 function weather() {
   curl -H "Accept-Language: ${LANG%_*}" "wttr.in/$1?u"
