@@ -55,7 +55,6 @@ set shiftwidth=2     " indent also with 2 spaces
 set softtabstop=2    " let backspace delete indent
 set expandtab        " expand tabs to spaces
 set autoindent       " use indentation of previous line
-set smartindent      " use intelligent indentation for C
 set nowrap           " don't wrap lines
 set pastetoggle=<F2> " <F2> to toggle auto-indentation when pasting in text
 set backspace=indent,eol,start " behave more like a standard editor
@@ -117,6 +116,7 @@ set comments=sl:/*,mb:\ *,elx:\ */
 set splitright       " Puts new vsplit windows to the right of the current
 set splitbelow       " Puts new split windows to the bottom of the current
 set lazyredraw       " Don't redraw while executing macros
+set synmaxcol=200    " Don't sytnax highlight long lines.
 
 " Key Commands
 " <F5> to remove trailing whitespace.
