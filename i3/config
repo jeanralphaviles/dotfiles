@@ -1,5 +1,6 @@
 # Sway config file
 # Please see sway(5) for a complete reference!
+include /etc/sway/config.d/*
 
 # Set mod to left alt
 set $mod Mod1
