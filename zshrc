@@ -13,10 +13,10 @@ autoload -U compinit
 compinit
 
 # Pushd stack
-setopt pushdignoredups
+setopt PUSHD_IGNORE_DUPS
 
 # Parse comments in prompt
-setopt interactivecomments
+setopt INTERACTIVE_COMMENTS
 
 # Menu selection
 zstyle ':completion:*' menu select
@@ -66,8 +66,6 @@ HISTSIZE=100000000
 SAVEHIST=100000000
 # Commands are recorded in history as they're typed.
 setopt SHARE_HISTORY
-# Write to the history file immediately, not when the shell exits.
-setopt INC_APPEND_HISTORY
 # Add timestamp for every entry
 setopt EXTENDED_HISTORY
 # Remove superfluous blanks before recording entry.
